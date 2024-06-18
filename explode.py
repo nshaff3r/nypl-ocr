@@ -21,6 +21,6 @@ def split_pdf(pdf_path, output_folder):
     print(f"PDF has been split into single-page PDFs and saved in {output_folder}")
 
 # Example usage
-pdf_path = './original/greytiming.pdf'
-output_folder = './original/split_pages'
+pdf_path = './pdfs/greytiming.pdf'
+output_folder = './pdfs/split_pages'
 split_pdf(pdf_path, output_folder)
