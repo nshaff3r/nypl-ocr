@@ -33,11 +33,11 @@ def pdf_to_bw(input_pdf_path, output_pdf_path, dpi=150, quality=85):
         optimized_img = Image.open(img_bytes)
         images.append(optimized_img)
     
-    # Save all images as a PDF with high quality
-    images[0].save(output_pdf_path, save_all=True, append_images=images[1:], quality=quality)
+        # Save image
+        images[page_number].save(f"{output_pdf_path}{page_number}.jpeg", quality=quality)
 
 # Usage example
 input_pdf_path = 'pdfs/timingtest.pdf'  # Replace with your input PDF file path
-output_pdf_path = 'pdfs/greytiming.pdf'  # Replace with your desired output PDF file path
+output_pdf_path = 'pdfs/split_pages/greytiming'  # Replace with your desired output PDF file path
 
-pdf_to_bw(input_pdf_path, output_pdf_path, dpi=150, quality=50)
+pdf_to_bw(input_pdf_path, output_pdf_path, dpi=150, quality=30)
