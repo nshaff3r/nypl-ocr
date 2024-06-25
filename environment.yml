@@ -1,0 +1,5 @@
+name: ocr
+channels:
+  - defaults
+dependencies:
+  - python=3.10
