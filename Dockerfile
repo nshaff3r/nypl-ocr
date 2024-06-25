@@ -4,6 +4,12 @@ FROM continuumio/miniconda3
 # Install system dependencies
 RUN apt-get update && apt-get install -y git-all
 
+# Clone the repository
+RUN git clone https://github.com/nshaff3r/nypl-ocr.git /nypl-ocr
+
+# Set the working directory to the cloned repository
+WORKDIR /nypl-ocr
+
 # Set PATH to include Conda binaries
 ENV PATH="/opt/conda/bin:${PATH}"
 
@@ -18,12 +24,6 @@ SHELL ["conda", "run", "-n", "ocr", "/bin/bash", "-c"]
 RUN conda install -n ocr pytorch torchvision torchaudio cpuonly -c pytorch
 RUN pip install python-doctr "python-doctr[torch]"
 RUN apt-get install -y libpangocairo-1.0-0
-
-# Clone the repository
-RUN git clone https://github.com/nshaff3r/nypl-ocr.git /nypl-ocr
-
-# Set the working directory to the cloned repository
-WORKDIR /nypl-ocr
 
 # Copy the rest of your files into the container
 COPY . .
