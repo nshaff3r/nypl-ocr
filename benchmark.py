@@ -29,5 +29,5 @@ for i, name in enumerate(os.listdir(folder)):
 print("setup complete",end='\n\n')
 
 startTime = datetime.now()
-results = Parallel(n_jobs=-1)(delayed(worker)(x) for x in tasks)
+results = Parallel(n_jobs=-1, backend='threading')(delayed(worker)(x) for x in tasks)
 print("Benchmarked time: " + str(datetime.now() - startTime))

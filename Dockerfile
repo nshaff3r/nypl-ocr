@@ -17,7 +17,7 @@ ENV PATH="/opt/conda/bin:${PATH}"
 COPY environment.yml /tmp/environment.yml
 RUN conda env create -f /tmp/environment.yml
 
-# Activate the 'ocr' environment
+# Activate the ocr environment
 SHELL ["conda", "run", "-n", "ocr", "/bin/bash", "-c"]
 
 # Install additional dependencies in the Conda environment
@@ -29,6 +29,7 @@ RUN apt-get install -y libpangocairo-1.0-0
 COPY . .
 
 # Uninstall opencv-python and opencv-python-headless (if they exist)
+# For some reason this is necessary for doctr to run properly
 RUN pip uninstall -y opencv-python opencv-python-headless || true
 
 # Reinstall opencv-python-headless
