@@ -5,7 +5,6 @@ import os
 
 def pdf_process(input_pdf_path, output_pdf_path, pdf_name, tasks, dpi=150, quality=85):
     # Open the input PDF file
-    print(output_pdf_path)
     pdf_document = fitz.open(input_pdf_path)
     
     # List to store images of pages

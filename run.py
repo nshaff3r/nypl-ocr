@@ -95,8 +95,7 @@ def downloader_worker(folder_id, drive_service):
                 with counter_lock:
                     download_counter += 1
                     safe_print(f"Downloaded {download_counter} files")
-
-            download_queue.put((file_path, file['name']))
+                download_queue.put((file_path, file['name']))
         
         page_token = response.get('nextPageToken', None)
         if page_token is None:
