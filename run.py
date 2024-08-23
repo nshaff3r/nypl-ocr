@@ -129,9 +129,15 @@ def worker(directory):
    while True:
         images = os.listdir(directory)
         images = list(set(images) - set(processed))
+        print(f"LENGTH TO GO: {len(images)}")
+        repeats = 0
         while len(images) == 0:
+            if repeats > 10:
+                return
             sleep(1)
+            repeasts += 1
             images = os.listdir(directory)
+        repeats = 0
         image_path = images[0]
         processed.append(image_path)
         image_path = os.path.join(directory, image_path)
@@ -212,7 +218,7 @@ if __name__ == "__main__":
     creds = Credentials.from_authorized_user_file('token.json', SCOPES)
     drive_service = build('drive', 'v3', credentials=creds)
 
-    folder_id = '1lLkumnjgnRCi21snefoheQpypzTnujQn'
+    folder_id = '16timjybE-zfCB7NW_zrppOSwgFtYtLw-'
     process_drive_folder(folder_id, drive_service)
 
     print("All processing complete.")
