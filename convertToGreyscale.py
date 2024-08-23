@@ -5,7 +5,7 @@ import os
 
 def pdf_process(input_pdf_path, output_pdf_path, pdf_name, dpi=150, quality=85):
     # Open the input PDF file
-    print("INPUT {}".format(input_pdf_path))
+    print(output_pdf_path)
     pdf_document = fitz.open(input_pdf_path)
     
     # List to store images of pages
@@ -39,5 +39,5 @@ def pdf_process(input_pdf_path, output_pdf_path, pdf_name, dpi=150, quality=85):
         images.append(optimized_img)
         name = pdf_name.replace(".pdf", "")
         # Save image
-        images[-1].save(f"{os.path.join(output_pdf_path, name)}{count}.jpeg", quality=quality)
+        images[-1].save(f"{os.path.join(f'{output_pdf_path}{count % 4 + 1}', name)}{count}.jpeg", quality=quality)
         count += 1
