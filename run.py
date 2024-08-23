@@ -216,7 +216,7 @@ if __name__ == "__main__":
     creds = Credentials.from_authorized_user_file('token.json', SCOPES)
     drive_service = build('drive', 'v3', credentials=creds)
 
-    folder_id = '16timjybE-zfCB7NW_zrppOSwgFtYtLw-'
+    folder_id = '1Lq8ikla0lC4Nq5ZvCK2M2k_hPtiZUxAI'
     process_drive_folder(folder_id, drive_service)
 
     print("All processing complete.")
