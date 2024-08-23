@@ -189,15 +189,12 @@ def process_drive_folder(folder_id, drive_service):
     pdf_processor.start()
 
     Parallel(n_jobs=-4)(delayed(worker)(directory) for directory in directories)
-    
-    print("doneeee")
+    print("CC")
     # Wait for all threads to complete
     downloader_thread.join()
+    print("A")
     pdf_processor.join()
-
-
-    download_queue.join()
-    print("download queue joined")
+    print("B")
 
     read_count = sum(1 for _ in open('read.txt'))
     unread_count = sum(1 for _ in open('unread.txt'))

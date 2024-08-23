@@ -1,9 +1,1 @@
 
-
-splitpdfs1/test13.jpeg	unreadable
-splitpdfs1/test65.jpeg	unreadable
-splitpdfs5/test69.jpeg	unreadable
-splitpdfs1/test52.jpeg	unreadable
-splitpdfs2/test1.jpeg	unreadable
-splitpdfs3/test2.jpeg	unreadable
-splitpdfs1/test0.jpeg	no data
