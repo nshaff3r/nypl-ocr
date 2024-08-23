@@ -162,6 +162,7 @@ def worker(directory):
                     confidences = [word["confidence"] > .5 for block in line for word in block]
                     if len(confidences) == 0:
                         append_json_safely("unread.txt", f"{image_path}\tno data")
+                        continue
                     new_validity = sum(confidences) / len(confidences)
                     if new_validity < .85:
                         append_json_safely("unread.txt", f"{image_path}\tunreadable")
