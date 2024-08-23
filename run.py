@@ -179,6 +179,9 @@ def process_drive_folder(folder_id):
     return all_unreadable, all_readable
 
 
+
+SCOPES = ["https://www.googleapis.com/auth/drive.readonly, https://www.googleapis.com/auth/drive.metadata.readonly"]
+
 dotenv.load_dotenv(".env", override=True)
 os.environ["USE_TORCH"] = "1"
 
@@ -193,7 +196,7 @@ model.det_predictor.model.postprocessor.box_thresh = 0.002
 print("setup complete")
 
 # Initialize the Google Drive API client
-creds = Credentials.from_authorized_user_file('token.json', ['https://www.googleapis.com/auth/drive'])
+creds = Credentials.from_authorized_user_file('token.json', SCOPES)
 drive_service = build('drive', 'v3', credentials=creds)
 
 # Global queues
