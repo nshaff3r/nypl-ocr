@@ -129,14 +129,14 @@ def worker(directory):
    while True:
         images = os.listdir(directory)
         images = list(set(images) - set(processed))
-        print(f"LENGTH TO GO: {len(images)}")
         repeats = 0
         while len(images) == 0:
             if repeats > 10:
                 return
             sleep(1)
-            repeasts += 1
+            repeats += 1
             images = os.listdir(directory)
+            images = list(set(images) - set(processed))
         repeats = 0
         image_path = images[0]
         processed.append(image_path)
@@ -189,7 +189,8 @@ def process_drive_folder(folder_id, drive_service):
     pdf_processor.start()
 
     Parallel(n_jobs=-4)(delayed(worker)(directory) for directory in directories)
-
+    
+    print("doneeee")
     # Wait for all threads to complete
     downloader_thread.join()
     pdf_processor.join()
