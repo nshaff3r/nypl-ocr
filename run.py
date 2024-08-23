@@ -180,7 +180,7 @@ def process_drive_folder(folder_id):
 
 
 
-SCOPES = ["https://www.googleapis.com/auth/drive.readonly, https://www.googleapis.com/auth/drive.metadata.readonly"]
+SCOPES = ["https://www.googleapis.com/auth/drive.readonly", "https://www.googleapis.com/auth/drive.metadata.readonly"]
 
 dotenv.load_dotenv(".env", override=True)
 os.environ["USE_TORCH"] = "1"
