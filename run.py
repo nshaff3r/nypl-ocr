@@ -115,7 +115,7 @@ def processor_worker():
         pdf_path, pdf_name = item
         output_dir = f"splitpdfs"
         # Process the PDF and generate images
-        pdf_process(pdf_path, output_dir, pdf_name)
+        pdf_process(pdf_path, output_dir, pdf_name, tasks)
 
         with counter_lock:
             pdf_counter += 1
