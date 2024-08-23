@@ -160,6 +160,8 @@ def worker(directory):
                     new_res = model(doc)
                     line = [block["lines"][0]["words"] for block in new_res.export()["pages"][0]["blocks"]]
                     confidences = [word["confidence"] > .5 for block in line for word in block]
+                    if len(confidences) == 0:
+                        append_json_safely("unread.txt", f"{image_path}\tno data")
                     new_validity = sum(confidences) / len(confidences)
                     if new_validity < .85:
                         append_json_safely("unread.txt", f"{image_path}\tunreadable")
@@ -189,12 +191,9 @@ def process_drive_folder(folder_id, drive_service):
     pdf_processor.start()
 
     Parallel(n_jobs=-4)(delayed(worker)(directory) for directory in directories)
-    print("CC")
     # Wait for all threads to complete
     downloader_thread.join()
-    print("A")
     pdf_processor.join()
-    print("B")
 
     read_count = sum(1 for _ in open('read.txt'))
     unread_count = sum(1 for _ in open('unread.txt'))
