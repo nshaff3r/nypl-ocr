@@ -119,6 +119,7 @@ def processor_worker():
         with counter_lock:
             pdf_counter += 1
             safe_print(f"Processed PDF {pdf_counter}: {pdf_name}")
+            os.remove(pdf_path)
 
         download_queue.task_done()
 
@@ -130,7 +131,7 @@ def worker(directory):
         images = list(set(images) - set(processed))
         repeats = 0
         while len(images) == 0:
-            if repeats > 10:
+            if repeats > 300:  # 5 minute timeout
                 return
             sleep(1)
             repeats += 1
